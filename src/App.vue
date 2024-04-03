@@ -25,10 +25,12 @@ export default {
     <button @click="store.callApi">Click Me</button>
     <h1>Movies</h1>
     <ul>
+      <!-- Loop to generate movie cards -->
       <MovieCard :movie="movie" v-for="movie in store.movies" :key="movie.id" />
     </ul>
     <h1>Series</h1>
     <ul>
+      <!-- Loop to generate series cards -->
       <SeriesCard
         :singleSeries="singleSeries"
         v-for="singleSeries in store.series"

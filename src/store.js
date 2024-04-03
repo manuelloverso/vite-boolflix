@@ -23,4 +23,9 @@ export const store = reactive({
         this.series = response.data.results;
       });
   },
+
+  divideForTwo(n) {
+    n = Math.ceil(n / 2);
+    return n;
+  },
 });
