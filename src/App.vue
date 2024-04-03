@@ -20,10 +20,15 @@ export default {
 </script>
 <template>
   <div class="search-bar">
-    <input type="text" />
+    <input v-model="store.search" type="text" />
     <button @click="store.getMovies">Click Me</button>
     <ul>
-      <li v-for="movie in store.movies">{{ movie.original_title }}</li>
+      <li v-for="movie in store.movies">
+        {{ movie.title }}
+        {{ movie.original_title }}
+        {{ movie.original_language }}
+        {{ movie.vote_average }}
+      </li>
     </ul>
   </div>
 </template>
