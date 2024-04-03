@@ -1,14 +1,12 @@
 <script>
 //Imports
 import MovieCard from "./components/MovieCard.vue";
-import SeriesCard from "./components/SeriesCard.vue";
 import { store } from "./store.js";
 
 export default {
   name: "App",
   components: {
     MovieCard,
-    SeriesCard,
   },
   data() {
     return {
@@ -26,13 +24,21 @@ export default {
     <h1>Movies</h1>
     <ul>
       <!-- Loop to generate movie cards -->
-      <MovieCard :movie="movie" v-for="movie in store.movies" :key="movie.id" />
+      <MovieCard
+        :movie="movie"
+        :title="movie.title"
+        :originalTitle="movie.original_title"
+        v-for="movie in store.movies"
+        :key="movie.id"
+      />
     </ul>
     <h1>Series</h1>
     <ul>
       <!-- Loop to generate series cards -->
-      <SeriesCard
-        :singleSeries="singleSeries"
+      <MovieCard
+        :movie="singleSeries"
+        :title="singleSeries.name"
+        :originalTitle="singleSeries.original_name"
         v-for="singleSeries in store.series"
         :key="singleSeries.id"
       />
