@@ -111,6 +111,14 @@ export default {
   top: 0;
   padding: 15px;
 
+  &::-webkit-scrollbar {
+    width: 8px;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background: #373737;
+  }
+
   & p {
     & span {
       font-size: 1.1rem;

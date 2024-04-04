@@ -41,8 +41,8 @@ export default {
         <nav>
           <ul>
             <li><a href="#">Home</a></li>
-            <li><a href="#">TV Series</a></li>
-            <li><a href="#">Movies</a></li>
+            <li><a href="#series">TV Series</a></li>
+            <li><a href="#movies">Movies</a></li>
             <li><a href="#">Original</a></li>
             <li><a href="#">Recently added</a></li>
             <li><a href="#">My favorites</a></li>
@@ -52,7 +52,7 @@ export default {
       <div class="search-bar">
         <i
           @click="store.callApi"
-          class="fa-solid fa-magnifying-glass fa-lg"
+          class="search-btn fa-solid fa-magnifying-glass fa-lg"
         ></i>
         <input
           v-model="store.search"
@@ -75,7 +75,7 @@ export default {
         No Movie/TV Series found
       </h3>
       <!-- Movies -->
-      <h2 v-if="store.movies.length > 0">Movies</h2>
+      <h2 id="movies" v-if="store.movies.length > 0">Movies</h2>
       <ul>
         <!-- Loop to generate movie cards -->
         <MovieCard
@@ -88,7 +88,7 @@ export default {
       </ul>
 
       <!-- Series -->
-      <h2 v-if="store.series.length > 0">TV Series</h2>
+      <h2 id="series" v-if="store.series.length > 0">TV Series</h2>
       <ul>
         <!-- Loop to generate series cards -->
         <MovieCard
