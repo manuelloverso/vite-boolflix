@@ -5,6 +5,7 @@ import { store } from "../store.js";
 export default {
   name: "MovieCard",
   props: {
+    isMovie: Boolean,
     movie: Object,
     title: String,
     originalTitle: String,
@@ -12,6 +13,7 @@ export default {
   data() {
     return {
       store,
+      apiKey: "84160a7353d1d37c7ead96a2fcac030a",
       isHover: false,
       genres: [],
     };
@@ -37,8 +39,10 @@ export default {
     getGenres(id) {
       axios
         .get(
-          `https://api.themoviedb.org/3/movie/${id}?api_key=84160a7353d1d37c7ead96a2fcac030a`
-        )
+          `https://api.themoviedb.org/3/${
+            this.isMovie == true ? "movie" : "tv"
+          }/${id}?api_key=84160a7353d1d37c7ead96a2fcac030a`
+        ) // i use ternary operator to generate different api calls based on wether im searching the genres for a movie or a tv series
         .then((response) => {
           this.genres = response.data.genres.map((el) => el.name);
         });

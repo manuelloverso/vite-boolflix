@@ -87,6 +87,7 @@ export default {
       <ul>
         <!-- Loop to generate movie cards -->
         <MovieCard
+          :isMovie="true"
           :movie="movie"
           :title="movie.title"
           :originalTitle="movie.original_title"
@@ -100,6 +101,7 @@ export default {
       <ul>
         <!-- Loop to generate series cards -->
         <MovieCard
+          :isMovie="false"
           :movie="singleSeries"
           :title="singleSeries.name"
           :originalTitle="singleSeries.original_name"
