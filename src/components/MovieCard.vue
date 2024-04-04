@@ -16,7 +16,7 @@ export default {
       apiKey: "84160a7353d1d37c7ead96a2fcac030a",
       isHover: false,
       genres: [],
-      actors: [],
+      cutActors: [],
     };
   },
 
@@ -37,31 +37,38 @@ export default {
       return language.toUpperCase();
     },
 
-    getGenres(id) {
-      axios
+    getGenres(id, boolean) {
+      /* axios
         .get(
           `https://api.themoviedb.org/3/${
-            this.isMovie == true ? "movie" : "tv"
-          }/${id}?api_key=${this.apiKey}`
+            boolean == true ? "movie" : "tv"
+          }/${id}?api_key=84160a7353d1d37c7ead96a2fcac030a`
         ) // i use ternary operator to generate different api calls based on wether im searching the genres for a movie or a tv series
         .then((response) => {
           this.genres = response.data.genres.map((el) => el.name);
+        })
+        .catch((err) => {
+          console.error(err);
         });
-      return this.genres.join(", ");
+      return this.genres.join(", "); */
+      return "work in progress";
     },
 
-    getActors(id) {
+    getActors(id, boolean) {
       axios
         .get(
           `https://api.themoviedb.org/3/${
-            this.isMovie == true ? "movie" : "tv"
-          }/${id}/credits?api_key=${this.apiKey}`
+            boolean == true ? "movie" : "tv"
+          }/${id}/credits?api_key=84160a7353d1d37c7ead96a2fcac030a`
         )
         .then((response) => {
-          this.actors = response.data.cast.map((el) => el.name);
+          const actors = response.data.cast.map((el) => el.name);
+          this.cutActors = actors.slice(0, 4).join(", ");
+        })
+        .catch((err) => {
+          console.error(err);
         });
-      const cutActors = this.actors.slice(0, 4);
-      return cutActors.join(", ");
+      return this.cutActors;
     },
   },
 };
@@ -89,8 +96,8 @@ export default {
       <p v-if="title != originalTitle">
         <span>Original title: </span>{{ originalTitle }}
       </p>
-      <p><span>Genres: </span>{{ getGenres(movie.id) }}</p>
-      <p><span>Actors: </span>{{ getActors(movie.id) }}</p>
+      <p><span>Genres: </span>{{ getGenres(movie.id, isMovie) }}</p>
+      <p><span>Actors: </span>{{ getActors(movie.id, isMovie) }}</p>
 
       <p>
         <span>Vote: </span>
@@ -107,7 +114,7 @@ export default {
       <p>
         <span>Language: </span>
         <img
-          width="40"
+          width="25"
           :src="`http://purecatamphetamine.github.io/country-flag-icons/3x2/${handleLanguage(
             movie.original_language
           )}.svg`"
