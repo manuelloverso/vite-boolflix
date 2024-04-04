@@ -15,9 +15,20 @@ export default {
   },
 
   methods: {
+    // @todo try to use computed properties
+
     divideForTwo(n) {
       n = Math.ceil(n / 2);
       return n;
+    },
+
+    handleLanguage(language) {
+      if (language == "en") {
+        language = "us";
+      } else if (language == "ja") {
+        language = "jp";
+      }
+      return language.toUpperCase();
     },
   },
 };
@@ -39,7 +50,9 @@ export default {
     ></i>
     <img
       width="50"
-      :src="`http://purecatamphetamine.github.io/country-flag-icons/3x2/${movie.original_language.toUpperCase()}.svg`"
+      :src="`http://purecatamphetamine.github.io/country-flag-icons/3x2/${handleLanguage(
+        movie.original_language
+      )}.svg`"
       alt=""
     />
   </li>
