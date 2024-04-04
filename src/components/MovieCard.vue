@@ -13,6 +13,7 @@ export default {
     return {
       store,
       isHover: false,
+      genres: [],
     };
   },
 
@@ -34,17 +35,16 @@ export default {
     },
 
     getGenres(id) {
-      let genres = [];
-      axios
-        .get(
-          `https://api.themoviedb.org/3/movie/438631?api_key=84160a7353d1d37c7ead96a2fcac030a`
-        )
-        .then((response) => {
-          genres = response.data.genres.map((el) => el.name);
-          console.log(genres);
-        });
-      console.log(genres);
-      return genres.toString();
+      if (id == Number) {
+        axios
+          .get(
+            `https://api.themoviedb.org/3/movie/${id}?api_key=84160a7353d1d37c7ead96a2fcac030a`
+          )
+          .then((response) => {
+            this.genres = response.data.genres.map((el) => el.name);
+          });
+        return this.genres.join(", ");
+      } else return "undefined";
     },
   },
 };
