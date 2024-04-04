@@ -35,7 +35,28 @@ export default {
 </script>
 <template>
   <li v-if="movie.poster_path != null" class="movie-card">
-    <img :src="`https://image.tmdb.org/t/p/w342${movie.poster_path}`" alt="" />
+    <div class="showed">
+      <img
+        :src="`https://image.tmdb.org/t/p/w342${movie.poster_path}`"
+        alt=""
+      />
+    </div>
+    <div class="hidden">
+      <p><span>Title: </span>{{ title }}</p>
+      <p><span>Title: </span>{{ originalTitle }}</p>
+      <p>
+        <span>Vote: </span>
+        <i
+          v-for="n in divideForTwo(movie.vote_average)"
+          class="fa-solid fa-star"
+        ></i>
+        <i
+          v-for="n in 5 - divideForTwo(movie.vote_average)"
+          class="fa-regular fa-star"
+        ></i>
+      </p>
+      <p><span>Overview: </span>{{ movie.overview }}</p>
+    </div>
   </li>
 </template>
 <style scoped>
@@ -45,6 +66,8 @@ export default {
   & img {
     display: block;
     width: 100%;
+    height: 440px; /* @todo: fix to height 100% */
+    object-fit: cover;
   }
 }
 </style>
