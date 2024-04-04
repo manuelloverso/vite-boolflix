@@ -18,8 +18,8 @@ export default {
 };
 </script>
 <template>
-  <!-- Site Header -->
   <div class="container">
+    <!-- Site Header -->
     <header>
       <div class="left">
         <div class="logo">
@@ -41,11 +41,11 @@ export default {
         <nav>
           <ul>
             <li><a href="#">Home</a></li>
-            <li><a href="#">Home</a></li>
-            <li><a href="#">Home</a></li>
-            <li><a href="#">Home</a></li>
-            <li><a href="#">Home</a></li>
-            <li><a href="#">Home</a></li>
+            <li><a href="#">TV Series</a></li>
+            <li><a href="#">Movies</a></li>
+            <li><a href="#">Original</a></li>
+            <li><a href="#">Recently added</a></li>
+            <li><a href="#">My favorites</a></li>
           </ul>
         </nav>
       </div>
@@ -64,8 +64,18 @@ export default {
 
     <!-- Site Main -->
     <main>
+      <h3 v-if="store.searched == false">Search any movies or tv series</h3>
+      <h3
+        v-if="
+          store.movies.length == 0 &&
+          store.series.length == 0 &&
+          store.searched == true
+        "
+      >
+        No Movie/TV Series found
+      </h3>
       <!-- Movies -->
-      <h2>Movies</h2>
+      <h2 v-if="store.movies.length > 0">Movies</h2>
       <ul>
         <!-- Loop to generate movie cards -->
         <MovieCard
@@ -78,7 +88,7 @@ export default {
       </ul>
 
       <!-- Series -->
-      <h2>TV Series</h2>
+      <h2 v-if="store.series.length > 0">TV Series</h2>
       <ul>
         <!-- Loop to generate series cards -->
         <MovieCard

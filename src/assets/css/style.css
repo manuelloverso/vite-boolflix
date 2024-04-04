@@ -42,6 +42,7 @@ header {
     .logo {
       width: 148px;
       margin-right: 4rem;
+      cursor: pointer;
 
       & svg {
         display: block;
@@ -52,12 +53,18 @@ header {
 
     & nav ul {
       display: flex;
-      gap: 1rem;
+      gap: 1.7rem;
 
       & li {
         & a {
           text-decoration: none;
           color: white;
+          display: inline-block;
+          transition: transform 0.2s;
+
+          &:hover {
+            transform: scale(1.1);
+          }
         }
       }
     }
