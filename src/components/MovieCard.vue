@@ -1,4 +1,5 @@
 <script>
+import axios from "axios";
 import { store } from "../store.js";
 
 export default {
@@ -31,6 +32,20 @@ export default {
       }
       return language.toUpperCase();
     },
+
+    getGenres(id) {
+      let genres = [];
+      axios
+        .get(
+          `https://api.themoviedb.org/3/movie/438631?api_key=84160a7353d1d37c7ead96a2fcac030a`
+        )
+        .then((response) => {
+          genres = response.data.genres.map((el) => el.name);
+          console.log(genres);
+        });
+      console.log(genres);
+      return genres.toString();
+    },
   },
 };
 </script>
@@ -57,6 +72,7 @@ export default {
       <p v-if="title != originalTitle">
         <span>Original title: </span>{{ originalTitle }}
       </p>
+      <p><span>Genres: </span>{{ getGenres(movie.id) }}</p>
       <p>
         <span>Vote: </span>
         <i

@@ -52,20 +52,28 @@ export default {
       <div class="search-bar">
         <i
           @click="store.callApi"
-          class="search-btn fa-solid fa-magnifying-glass fa-lg"
+          class="search-btn fa-solid fa-magnifying-glass"
         ></i>
         <input
           v-model="store.search"
           type="text"
           @keyup.enter="store.callApi"
         />
+        <i
+          v-if="store.search != ''"
+          @click="store.search = ''"
+          class="fa-solid fa-xmark"
+        ></i>
       </div>
     </header>
 
     <!-- Site Main -->
     <main>
-      <h3 v-if="store.searched == false">Search any movies or tv series</h3>
+      <h3 class="err-message" v-if="store.searched == false">
+        Search any movies or tv series
+      </h3>
       <h3
+        class="err-message"
         v-if="
           store.movies.length == 0 &&
           store.series.length == 0 &&

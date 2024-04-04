@@ -105,6 +105,12 @@ main {
     margin-bottom: 0.7rem;
   }
 
+  .err-message {
+    font-size: 2rem;
+    font-weight: 400;
+    text-align: center;
+  }
+
   ul {
     display: flex;
     flex-wrap: wrap;
