@@ -14,9 +14,7 @@ export default {
     };
   },
 
-  mounted() {
-    console.log(store.series);
-  },
+  mounted() {},
 };
 </script>
 <template>

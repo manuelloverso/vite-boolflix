@@ -54,7 +54,9 @@ export default {
     <!-- Hidden Content which shows on hover -->
     <div class="hidden">
       <p><span>Title: </span>{{ title }}</p>
-      <p><span>Title: </span>{{ originalTitle }}</p>
+      <p v-if="title != originalTitle">
+        <span>Original title: </span>{{ originalTitle }}
+      </p>
       <p>
         <span>Vote: </span>
         <i
@@ -67,7 +69,7 @@ export default {
         ></i>
       </p>
       <p><span>Overview: </span>{{ movie.overview }}</p>
-      <div>
+      <p>
         <span>Language: </span>
         <img
           width="40"
@@ -76,7 +78,7 @@ export default {
           )}.svg`"
           alt=""
         />
-      </div>
+      </p>
     </div>
   </li>
 </template>
@@ -102,10 +104,22 @@ export default {
 
 .hidden {
   transform: rotateY(-180deg);
+  width: 100%;
   height: 100%;
   overflow-y: auto;
   position: absolute;
   top: 0;
+  padding: 15px;
+
+  & p {
+    & span {
+      font-size: 1.1rem;
+      font-weight: 500;
+    }
+    & i {
+      color: #ffe066;
+    }
+  }
 }
 
 .showed {
