@@ -1,3 +1,4 @@
+/* #region COMMON */
 * {
   margin: 0;
   padding: 0;
@@ -22,10 +23,17 @@ body {
   font-weight: 300;
 }
 
+ul {
+  list-style: none;
+}
+/* #endregion COMMON */
+
+/* #region HEADER */
 header {
   display: flex;
   align-items: center;
   justify-content: space-between;
+  margin-bottom: 1rem;
 
   .left {
     display: flex;
@@ -44,7 +52,6 @@ header {
 
     & nav ul {
       display: flex;
-      list-style: none;
       gap: 1rem;
 
       & li {
@@ -73,3 +80,21 @@ header {
     }
   }
 }
+/* #endregion HEADER */
+
+/* #region MAIN */
+main {
+  & h2 {
+    font-weight: 400;
+    font-size: 2rem;
+    margin-bottom: 0.7rem;
+  }
+
+  ul {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    margin-bottom: 1.5rem;
+  }
+}
+/* #endregion MAIN */

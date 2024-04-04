@@ -34,9 +34,21 @@ export default {
 };
 </script>
 <template>
-  <li>
+  <li v-if="movie.poster_path != null" class="movie-card">
     <img :src="`https://image.tmdb.org/t/p/w342${movie.poster_path}`" alt="" />
-    {{ title }}
+  </li>
+</template>
+<style scoped>
+.movie-card {
+  box-shadow: black 0 0 20px 3px;
+  width: calc((100% / 6) - 17px);
+  & img {
+    display: block;
+    width: 100%;
+  }
+}
+</style>
+<!-- {{ title }}
     {{ originalTitle }}
     {{ movie.original_language }}
     {{ movie.vote_average }}
@@ -54,7 +66,4 @@ export default {
         movie.original_language
       )}.svg`"
       alt=""
-    />
-  </li>
-</template>
-<style scoped></style>
+    /> -->
