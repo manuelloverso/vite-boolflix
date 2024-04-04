@@ -35,16 +35,14 @@ export default {
     },
 
     getGenres(id) {
-      if (id == Number) {
-        axios
-          .get(
-            `https://api.themoviedb.org/3/movie/${id}?api_key=84160a7353d1d37c7ead96a2fcac030a`
-          )
-          .then((response) => {
-            this.genres = response.data.genres.map((el) => el.name);
-          });
-        return this.genres.join(", ");
-      } else return "undefined";
+      axios
+        .get(
+          `https://api.themoviedb.org/3/movie/${id}?api_key=84160a7353d1d37c7ead96a2fcac030a`
+        )
+        .then((response) => {
+          this.genres = response.data.genres.map((el) => el.name);
+        });
+      return this.genres.join(", ");
     },
   },
 };
