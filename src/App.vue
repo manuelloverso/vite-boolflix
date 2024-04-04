@@ -63,6 +63,7 @@ export default {
           v-if="store.search != ''"
           @click="store.search = ''"
           class="fa-solid fa-xmark"
+          style="cursor: pointer"
         ></i>
       </div>
     </header>

@@ -16,6 +16,7 @@ export default {
       apiKey: "84160a7353d1d37c7ead96a2fcac030a",
       isHover: false,
       genres: [],
+      actors: [],
     };
   },
 
@@ -41,12 +42,26 @@ export default {
         .get(
           `https://api.themoviedb.org/3/${
             this.isMovie == true ? "movie" : "tv"
-          }/${id}?api_key=84160a7353d1d37c7ead96a2fcac030a`
+          }/${id}?api_key=${this.apiKey}`
         ) // i use ternary operator to generate different api calls based on wether im searching the genres for a movie or a tv series
         .then((response) => {
           this.genres = response.data.genres.map((el) => el.name);
         });
       return this.genres.join(", ");
+    },
+
+    getActors(id) {
+      axios
+        .get(
+          `https://api.themoviedb.org/3/${
+            this.isMovie == true ? "movie" : "tv"
+          }/${id}/credits?api_key=${this.apiKey}`
+        )
+        .then((response) => {
+          this.actors = response.data.cast.map((el) => el.name);
+        });
+      const cutActors = this.actors.slice(0, 4);
+      return cutActors.join(", ");
     },
   },
 };
@@ -75,6 +90,8 @@ export default {
         <span>Original title: </span>{{ originalTitle }}
       </p>
       <p><span>Genres: </span>{{ getGenres(movie.id) }}</p>
+      <p><span>Actors: </span>{{ getActors(movie.id) }}</p>
+
       <p>
         <span>Vote: </span>
         <i
