@@ -2,6 +2,7 @@
 //Imports
 import MovieCard from "./components/MovieCard.vue";
 import AppHeader from "./components/AppHeader.vue";
+import GenresFilter from "./components/GenresFilter.vue";
 
 import { store } from "./store.js";
 
@@ -10,6 +11,7 @@ export default {
   components: {
     AppHeader,
     MovieCard,
+    GenresFilter,
   },
   data() {
     return {
@@ -23,6 +25,8 @@ export default {
 <template>
   <div class="container">
     <AppHeader />
+    <GenresFilter />
+
     <!-- Site Main -->
     <main>
       <h3 class="err-message" v-if="store.searched == false">
