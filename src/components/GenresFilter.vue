@@ -22,13 +22,24 @@ export default {
         });
     },
 
-    isFiltered(genreId) {
+    filterMovies(genreId) {
       store.filtered = true;
       store.filteredMovies = [];
+      store.filteredSeries = [];
+
       console.log(store.movies);
+
+      //save filtered movies
       store.movies.forEach((movie) => {
         if (movie.genre_ids.includes(genreId)) {
           store.filteredMovies.push(movie);
+        }
+      });
+
+      //save filtered tv series
+      store.series.forEach((show) => {
+        if (show.genre_ids.includes(genreId)) {
+          store.filteredSeries.push(show);
         }
       });
     },
@@ -42,7 +53,7 @@ export default {
 <template>
   <h3>Filter by genre:</h3>
   <ul>
-    <li @click="isFiltered(genre.id)" v-for="genre in allGenres">
+    <li @click="filterMovies(genre.id)" v-for="genre in allGenres">
       {{ genre.name }}
     </li>
   </ul>

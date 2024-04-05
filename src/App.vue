@@ -75,11 +75,22 @@ export default {
       <ul>
         <!-- Loop to generate series cards -->
         <MovieCard
+          v-if="store.filtered == false"
           :isMovie="false"
           :movie="singleSeries"
           :title="singleSeries.name"
           :originalTitle="singleSeries.original_name"
           v-for="singleSeries in store.series"
+          :key="singleSeries.id"
+        />
+
+        <MovieCard
+          v-if="store.filtered"
+          :isMovie="false"
+          :movie="singleSeries"
+          :title="singleSeries.name"
+          :originalTitle="singleSeries.original_name"
+          v-for="singleSeries in store.filteredSeries"
           :key="singleSeries.id"
         />
       </ul>

@@ -8,6 +8,7 @@ export const store = reactive({
   searched: false,
   filtered: false,
   filteredMovies: [],
+  filteredSeries: [],
 
   //returns the movies and tv series list when the search is submitted
   callApi() {
