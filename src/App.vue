@@ -47,11 +47,21 @@ export default {
       <ul>
         <!-- Loop to generate movie cards -->
         <MovieCard
+          v-if="store.filtered == false"
           :isMovie="true"
           :movie="movie"
           :title="movie.title"
           :originalTitle="movie.original_title"
           v-for="movie in store.movies"
+          :key="movie.id"
+        />
+        <MovieCard
+          v-if="store.filtered == true"
+          :isMovie="true"
+          :movie="movie"
+          :title="movie.title"
+          :originalTitle="movie.original_title"
+          v-for="movie in store.filteredMovies"
           :key="movie.id"
         />
       </ul>

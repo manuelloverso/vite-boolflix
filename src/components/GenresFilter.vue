@@ -8,7 +8,6 @@ export default {
     return {
       store,
       allGenres: [],
-      filteredMovies: [],
     };
   },
 
@@ -24,18 +23,14 @@ export default {
     },
 
     isFiltered(genreId) {
-      /* store.filtered = true;
-      store.genreFilter = genreId; */
-      /* store.movies = [];
-      store.series = []; */
+      store.filtered = true;
+      store.filteredMovies = [];
+      console.log(store.movies);
       store.movies.forEach((movie) => {
         if (movie.genre_ids.includes(genreId)) {
-          this.filteredMovies.push(movie);
+          store.filteredMovies.push(movie);
         }
       });
-
-      console.log(genreId);
-      console.log(this.filteredMovies);
     },
   },
 

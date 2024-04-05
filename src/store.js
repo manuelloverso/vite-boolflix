@@ -6,12 +6,13 @@ export const store = reactive({
   series: [],
   search: "",
   searched: false,
-  /*  filtered: false,
-  genreFilter: null, */
+  filtered: false,
+  filteredMovies: [],
 
   //returns the movies and tv series list when the search is submitted
   callApi() {
     this.searched = true;
+    this.filtered = false;
     axios
       .get(
         `https://api.themoviedb.org/3/search/movie?api_key=84160a7353d1d37c7ead96a2fcac030a&query=${this.search}`
