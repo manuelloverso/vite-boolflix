@@ -39,7 +39,7 @@ export default {
     },
 
     getGenres(id, boolean) {
-      /* axios
+      axios
         .get(
           `https://api.themoviedb.org/3/${
             boolean == true ? "movie" : "tv"
@@ -47,12 +47,13 @@ export default {
         ) // i use ternary operator to generate different api calls based on wether im searching the genres for a movie or a tv series
         .then((response) => {
           this.genres = response.data.genres.map((el) => el.name);
+          this.genres = this.genres.join(", ");
         })
         .catch((err) => {
           console.error(err);
         });
-      return this.genres.join(", "); */
-      return "work in progress";
+      //return this.genres;
+      //return "work in progress";
     },
 
     getActors(id, boolean) {
@@ -76,13 +77,7 @@ export default {
 </script>
 <template>
   <!-- Single Card -->
-  <li
-    v-if="movie.poster_path != null"
-    class="movie-card"
-    :class="{ reveal: isHover }"
-    @mouseover="isHover = true"
-    @mouseleave="isHover = false"
-  >
+  <li v-if="movie.poster_path != null" class="movie-card">
     <!-- Showed movie poster -->
     <div class="showed">
       <img
@@ -130,7 +125,9 @@ export default {
 </template>
 <style scoped>
 .movie-card {
+  box-shadow: black 0 0 30px 4px;
   width: calc((100% / 6) - 17px);
+  aspect-ratio: 0.7;
   position: relative;
 
   .poster-img {
@@ -139,23 +136,29 @@ export default {
     height: 100%;
     object-fit: cover;
   }
-}
+  &:hover {
+    .showed {
+      display: none;
+    }
 
-.hidden,
-.showed {
-  backface-visibility: hidden;
-  transition: transform 0.5s;
-  box-shadow: black 0 0 20px 3px;
+    .hidden {
+      display: block;
+    }
+  }
 }
 
 .hidden {
-  transform: rotateY(-180deg);
   width: 100%;
   height: 100%;
   overflow-y: auto;
   position: absolute;
   top: 0;
   padding: 15px;
+  display: none;
+
+  &:hover {
+    display: block;
+  }
 
   &::-webkit-scrollbar {
     width: 8px;
@@ -177,17 +180,9 @@ export default {
 }
 
 .showed {
-  transform: rotateY(0);
   height: 100%;
 }
-
-.reveal .hidden,
-.matched .hidden {
-  transform: rotateY(0);
-}
-
-.reveal .showed,
-.matched .showed {
-  transform: rotateY(-180deg);
-}
 </style>
+<!-- :class="{ reveal: isHover }"
+    @mouseover="isHover = true"
+    @mouseleave="isHover = false"  -->
