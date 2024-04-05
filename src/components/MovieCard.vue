@@ -21,16 +21,17 @@ export default {
   },
 
   methods: {
-    // @todo try to use computed properties
+    // @todo: try to use computed properties
 
     divideForTwo(n) {
       n = Math.ceil(n / 2);
       return n;
     },
 
+    //@todo: handle the case when the flag image is not found and return the language string
     handleLanguage(language) {
       if (language == "en") {
-        language = "us";
+        language = "gb";
       } else if (language == "ja") {
         language = "jp";
       }
@@ -74,6 +75,7 @@ export default {
 };
 </script>
 <template>
+  <!-- Single Card -->
   <li
     v-if="movie.poster_path != null"
     class="movie-card"
@@ -99,6 +101,7 @@ export default {
       <p><span>Genres: </span>{{ getGenres(movie.id, isMovie) }}</p>
       <p><span>Actors: </span>{{ getActors(movie.id, isMovie) }}</p>
 
+      <!-- Generate vote stars -->
       <p>
         <span>Vote: </span>
         <i
@@ -112,6 +115,7 @@ export default {
       </p>
       <p><span>Overview: </span>{{ movie.overview }}</p>
       <p>
+        <!-- Movie /Show Language -->
         <span>Language: </span>
         <img
           width="25"

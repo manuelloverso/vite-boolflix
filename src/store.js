@@ -7,6 +7,7 @@ export const store = reactive({
   search: "",
   searched: false,
 
+  //returns the movies and tv series list when the search is submitted
   callApi() {
     this.searched = true;
     axios
