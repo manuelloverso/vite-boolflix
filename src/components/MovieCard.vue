@@ -38,11 +38,11 @@ export default {
       return language.toUpperCase();
     },
 
-    getGenres(id, boolean) {
+    getGenres(id) {
       axios
         .get(
           `https://api.themoviedb.org/3/${
-            boolean == true ? "movie" : "tv"
+            this.isMovie == true ? "movie" : "tv"
           }/${id}?api_key=84160a7353d1d37c7ead96a2fcac030a`
         ) // i use ternary operator to generate different api calls based on wether im searching the genres for a movie or a tv series
         .then((response) => {
@@ -56,11 +56,11 @@ export default {
       //return "work in progress";
     },
 
-    getActors(id, boolean) {
+    getActors(id) {
       axios
         .get(
           `https://api.themoviedb.org/3/${
-            boolean == true ? "movie" : "tv"
+            this.isMovie == true ? "movie" : "tv"
           }/${id}/credits?api_key=84160a7353d1d37c7ead96a2fcac030a`
         )
         .then((response) => {
@@ -93,8 +93,8 @@ export default {
       <p v-if="title != originalTitle">
         <span>Original title: </span>{{ originalTitle }}
       </p>
-      <p><span>Genres: </span>{{ getGenres(movie.id, isMovie) }}</p>
-      <p><span>Actors: </span>{{ getActors(movie.id, isMovie) }}</p>
+      <p><span>Genres: </span>{{ getGenres(movie.id) }}</p>
+      <p><span>Actors: </span>{{ getActors(movie.id) }}</p>
 
       <!-- Generate vote stars -->
       <p>
