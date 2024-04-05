@@ -15,8 +15,8 @@ export default {
       store,
       apiKey: "84160a7353d1d37c7ead96a2fcac030a",
       isHover: false,
-      genres: [],
       cutActors: [],
+      genres: [],
     };
   },
 
@@ -52,7 +52,6 @@ export default {
         .catch((err) => {
           console.error(err);
         });
-      //return this.genres;
       //return "work in progress";
     },
 
@@ -70,8 +69,12 @@ export default {
         .catch((err) => {
           console.error(err);
         });
-      return this.cutActors;
     },
+  },
+
+  mounted() {
+    this.getGenres(this.movie.id);
+    this.getActors(this.movie.id);
   },
 };
 </script>
@@ -93,8 +96,8 @@ export default {
       <p v-if="title != originalTitle">
         <span>Original title: </span>{{ originalTitle }}
       </p>
-      <p><span>Genres: </span>{{ getGenres(movie.id) }}</p>
-      <p><span>Actors: </span>{{ getActors(movie.id) }}</p>
+      <p><span>Genres: </span>{{ genres }}</p>
+      <p><span>Actors: </span>{{ cutActors }}</p>
 
       <!-- Generate vote stars -->
       <p>
