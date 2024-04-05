@@ -25,7 +25,11 @@ export default {
 <template>
   <div class="container">
     <AppHeader />
-    <GenresFilter />
+    <GenresFilter
+      v-if="
+        store.searched && store.movies.length > 0 && store.series.length > 0
+      "
+    />
 
     <!-- Site Main -->
     <main>
@@ -56,7 +60,7 @@ export default {
           :key="movie.id"
         />
         <MovieCard
-          v-if="store.filtered == true"
+          v-if="store.filtered"
           :isMovie="true"
           :movie="movie"
           :title="movie.title"
