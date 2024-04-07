@@ -125,7 +125,6 @@ export default {
 </template>
 <style scoped>
 .movie-card {
-  box-shadow: black 0 0 30px 4px;
   width: calc((100% / 6) - 17px);
   aspect-ratio: 0.7;
   position: relative;
@@ -138,11 +137,11 @@ export default {
   }
   &:hover {
     .showed {
-      display: none;
+      transform: rotateY(180deg);
     }
 
     .hidden {
-      display: block;
+      transform: rotateY(0);
     }
   }
 }
@@ -154,11 +153,10 @@ export default {
   position: absolute;
   top: 0;
   padding: 15px;
-  display: none;
-
-  &:hover {
-    display: block;
-  }
+  box-shadow: black 0 0 30px 4px;
+  transform: rotateY(-180deg);
+  backface-visibility: hidden;
+  transition: transform 0.7s;
 
   &::-webkit-scrollbar {
     width: 8px;
@@ -180,9 +178,9 @@ export default {
 }
 
 .showed {
+  transition: transform 0.7s;
+  box-shadow: black 0 0 30px 4px;
+  backface-visibility: hidden;
   height: 100%;
 }
 </style>
-<!-- :class="{ reveal: isHover }"
-    @mouseover="isHover = true"
-    @mouseleave="isHover = false"  -->
