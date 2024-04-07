@@ -5,4 +5,4 @@
   Per fare questo, come fanno siti molto più rinomati, utilizzeremo un API che ci
   permette di avere un insieme di risultati congrui alla nostra ricerca.
 
-  @todo: try to add a carousel - try to add again flip effect on card hover
+  @todo: try to add a carousel

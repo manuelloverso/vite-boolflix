@@ -1,6 +1,7 @@
 <script>
 import axios from "axios";
 import { store } from "../store.js";
+import { hasFlag } from "country-flag-icons";
 
 export default {
   name: "MovieCard",
@@ -12,6 +13,7 @@ export default {
   },
   data() {
     return {
+      hasFlag,
       store,
       apiKey: "84160a7353d1d37c7ead96a2fcac030a",
       isHover: false,
@@ -26,14 +28,14 @@ export default {
       return n;
     },
 
-    //@todo: handle the case when the flag image is not found and return the language string
-    handleLanguage(language) {
-      if (language == "en") {
-        language = "gb";
-      } else if (language == "ja") {
-        language = "jp";
-      }
-      return language.toUpperCase();
+    editLanguages(array) {
+      array.forEach((movie) => {
+        if (movie.original_language == "en") {
+          movie.original_language = "gb";
+        } else if (movie.original_language == "ja") {
+          movie.original_language = "jp";
+        }
+      });
     },
 
     getGenres(id) {
@@ -72,6 +74,8 @@ export default {
   mounted() {
     this.getGenres(this.movie.id);
     this.getActors(this.movie.id);
+    this.editLanguages(store.movies);
+    this.editLanguages(store.series);
   },
 };
 </script>
@@ -113,12 +117,12 @@ export default {
         <!-- Movie /Show Language -->
         <span>Language: </span>
         <img
+          v-if="hasFlag(movie.original_language.toUpperCase())"
           width="25"
-          :src="`http://purecatamphetamine.github.io/country-flag-icons/3x2/${handleLanguage(
-            movie.original_language
-          )}.svg`"
+          :src="`http://purecatamphetamine.github.io/country-flag-icons/3x2/${movie.original_language.toUpperCase()}.svg`"
           alt=""
         />
+        <span v-else>{{ movie.original_language }}</span>
       </p>
     </div>
   </li>
