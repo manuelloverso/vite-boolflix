@@ -21,8 +21,6 @@ export default {
   },
 
   methods: {
-    // @todo: try to use computed properties
-
     divideForTwo(n) {
       n = Math.ceil(n / 2);
       return n;
@@ -52,7 +50,6 @@ export default {
         .catch((err) => {
           console.error(err);
         });
-      //return "work in progress";
     },
 
     getActors(id) {

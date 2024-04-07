@@ -30,16 +30,16 @@ export default {
       console.log(store.movies);
 
       //save filtered movies
-      store.movies.forEach((movie) => {
+      store.filteredMovies = store.movies.filter((movie) => {
         if (movie.genre_ids.includes(genreId)) {
-          store.filteredMovies.push(movie);
+          return movie;
         }
       });
 
       //save filtered tv series
-      store.series.forEach((show) => {
+      store.filteredSeries = store.series.filter((show) => {
         if (show.genre_ids.includes(genreId)) {
-          store.filteredSeries.push(show);
+          return show;
         }
       });
     },

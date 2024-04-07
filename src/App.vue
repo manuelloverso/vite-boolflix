@@ -18,13 +18,14 @@ export default {
       store,
     };
   },
-
-  mounted() {},
 };
 </script>
 <template>
   <div class="container">
+    <!-- Site Header -->
     <AppHeader />
+
+    <!-- Filters by genre bar -->
     <GenresFilter
       v-if="
         store.searched && store.movies.length > 0 && store.series.length > 0
@@ -59,6 +60,7 @@ export default {
           v-for="movie in store.movies"
           :key="movie.id"
         />
+        <!-- This loops to generate only movies filtered by genre -->
         <MovieCard
           v-if="store.filtered"
           :isMovie="true"
@@ -84,6 +86,7 @@ export default {
           :key="singleSeries.id"
         />
 
+        <!-- This loops to generate only tv series filtered by genre -->
         <MovieCard
           v-if="store.filtered"
           :isMovie="false"
