@@ -3,6 +3,7 @@
 import MovieCard from "./components/MovieCard.vue";
 import AppHeader from "./components/AppHeader.vue";
 import GenresFilter from "./components/GenresFilter.vue";
+import AppLoader from "./components/AppLoader.vue";
 import "vue3-carousel/dist/carousel.css";
 import { Carousel, Slide, Pagination, Navigation } from "vue3-carousel";
 
@@ -18,6 +19,7 @@ export default {
     AppHeader,
     MovieCard,
     GenresFilter,
+    AppLoader,
   },
   data() {
     return {
@@ -34,6 +36,11 @@ export default {
   <div class="container">
     <!-- Site Header -->
     <AppHeader />
+
+    <!-- Loader -->
+    <template v-if="store.loading == true">
+      <AppLoader />
+    </template>
 
     <!-- Filters by genre bar -->
     <GenresFilter
@@ -92,7 +99,7 @@ export default {
 
       <template v-if="store.searched == true">
         <!-- Movies -->
-        <h2 id="movies" v-if="store.movies.length > 0">Movies</h2>
+        <h2 class="mt" id="movies" v-if="store.movies.length > 0">Movies</h2>
         <ul>
           <!-- Loop to generate movie cards -->
           <MovieCard
@@ -117,7 +124,7 @@ export default {
         </ul>
 
         <!-- Series -->
-        <h2 id="series" v-if="store.series.length > 0">TV Series</h2>
+        <h2 class="mt" id="series" v-if="store.series.length > 0">TV Series</h2>
         <ul>
           <!-- Loop to generate series cards -->
           <MovieCard

@@ -26,6 +26,13 @@ export default {
       store.filtered = true;
       store.filteredMovies = [];
       store.filteredSeries = [];
+      const activeGenre = document.querySelector(".active");
+      if (activeGenre) {
+        activeGenre.classList.remove("active");
+      }
+      const selected = document.getElementById("genre" + genreId);
+      console.log(selected);
+      selected.classList.add("active");
 
       //save filtered movies
       store.filteredMovies = store.movies.filter((movie) => {
@@ -41,6 +48,16 @@ export default {
         }
       });
     },
+
+    removeFilters() {
+      store.filtered = false;
+      store.filteredMovies = [];
+      store.filteredSeries = [];
+      const activeGenre = document.querySelector(".active");
+      if (activeGenre) {
+        activeGenre.classList.remove("active");
+      }
+    },
   },
 
   mounted() {
@@ -51,12 +68,41 @@ export default {
 <template>
   <h3>Filter by genre:</h3>
   <ul>
-    <li @click="filterMovies(genre.id)" v-for="genre in allGenres">
+    <li
+      class="genre"
+      :id="'genre' + genre.id"
+      @click="filterMovies(genre.id)"
+      v-for="genre in allGenres"
+    >
       {{ genre.name }}
     </li>
   </ul>
+  <button
+    v-if="store.filtered == true"
+    @click="removeFilters()"
+    class="remove-btn"
+  >
+    remove filter
+  </button>
 </template>
 <style scoped>
+.active {
+  color: red;
+}
+
+.remove-btn {
+  margin: 10px 0;
+  cursor: pointer;
+  border: none;
+  color: white;
+  padding: 5px 10px;
+  background-color: red;
+  border-radius: 15px;
+  transition: background-color 0.3s ease;
+  &:hover {
+    background-color: rgb(255, 103, 103);
+  }
+}
 h3 {
   font-weight: 400;
 }

@@ -25,10 +25,21 @@ body {
   color: #fff;
   font-family: "Kanit", sans-serif;
   font-weight: 300;
+  &::-webkit-scrollbar {
+    width: 8px;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background: #373737;
+  }
 }
 
 ul {
   list-style: none;
+}
+
+.mt {
+  margin-top: 30px;
 }
 /* #endregion COMMON */
 
@@ -78,15 +89,22 @@ header {
     padding: 5px 10px;
     border: 1px solid white;
     border-radius: 8px;
+    display: flex;
+    width: 250px;
 
     .search-btn {
       cursor: pointer;
+      transition: all 0.2s ease;
+      &:hover {
+        transform: scale(1.2);
+      }
     }
 
     & input {
       background-color: transparent;
       border: none;
       color: white;
+      flex-grow: 1;
       margin-left: 10px;
 
       &:focus {

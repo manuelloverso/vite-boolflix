@@ -43,10 +43,16 @@ export default {
     </div>
     <div class="search-bar">
       <i
+        :class="{ 'd-none': store.search == '' }"
         @click="store.callApi"
         class="search-btn fa-solid fa-magnifying-glass"
       ></i>
-      <input v-model="store.search" type="text" @keyup.enter="store.callApi" />
+      <input
+        class="search-input"
+        v-model="store.search"
+        type="text"
+        @keyup.enter="store.callApi"
+      />
       <i
         v-if="store.search != ''"
         @click="store.search = ''"
@@ -56,4 +62,9 @@ export default {
     </div>
   </header>
 </template>
-<style scoped></style>
+<style scoped>
+.d-none {
+  transition: display 0.4s ease;
+  display: none;
+}
+</style>

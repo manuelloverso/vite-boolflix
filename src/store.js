@@ -12,6 +12,7 @@ export const store = reactive({
   filtered: false,
   filteredMovies: [],
   filteredSeries: [],
+  loading: false,
 
   //get a list of the most popular movies
   popularMovies() {
@@ -33,7 +34,7 @@ export const store = reactive({
 
   //returns the movies and tv series list when the search is submitted
   callApi() {
-    this.searched = true;
+    (this.loading = true), (this.searched = true);
     this.filtered = false;
     axios
       .get(
@@ -41,6 +42,7 @@ export const store = reactive({
       )
       .then((response) => {
         this.movies = response.data.results;
+        this.loading = false;
       });
 
     axios
