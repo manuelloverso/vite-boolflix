@@ -14,7 +14,7 @@ export default {
   <!-- Site Header -->
   <header>
     <div class="left">
-      <div class="logo">
+      <div class="logo" @click="store.searched = false">
         <svg
           viewBox="0 0 111 30"
           version="1.1"
@@ -32,7 +32,7 @@ export default {
       </div>
       <nav>
         <ul>
-          <li><a href="#">Home</a></li>
+          <li @click="store.searched = false"><a href="#">Home</a></li>
           <li><a href="#series">TV Series</a></li>
           <li><a href="#movies">Movies</a></li>
           <li><a href="#">Original</a></li>

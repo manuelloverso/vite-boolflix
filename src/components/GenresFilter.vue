@@ -27,8 +27,6 @@ export default {
       store.filteredMovies = [];
       store.filteredSeries = [];
 
-      console.log(store.movies);
-
       //save filtered movies
       store.filteredMovies = store.movies.filter((movie) => {
         if (movie.genre_ids.includes(genreId)) {

@@ -9,10 +9,12 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@splidejs/splide": "^4.1.4",
     "axios": "^1.6.8",
     "bootstrap": "^5.3.3",
     "country-flag-icons": "^1.5.11",
-    "vue": "^3.4.21"
+    "vue": "^3.4.21",
+    "vue3-carousel": "^0.3.3"
   },
   "devDependencies": {
     "@vitejs/plugin-vue": "^5.0.4",
